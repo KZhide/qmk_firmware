@@ -41,22 +41,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
         KC_ESC,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_LEFT,
-        KC_DELT,        KC_QUOT,      KC_COMM,   KC_DOT,   KC_P,   KC_Y,   TG(SYMB),
-        KC_BSPC,        KC_A,         KC_O,   KC_E,   KC_U,   KC_I,
-        KC_LSFT,        CTL_T(KC_SCLN),  KC_Q,   KC_J,   KC_K,   KC_X,   ALL_T(KC_HENK),
+        KC_BSPC,        KC_QUOT,      KC_COMM,   KC_DOT,   KC_P,   KC_Y,   TG(SYMB),
+        KC_LCTL,        KC_A,         KC_O,   KC_E,   KC_U,   KC_I,
+        KC_LSFT,        CTL_T(KC_SCLN),  KC_Q,   KC_J,   KC_K,   KC_X,   KC_LBRC,
         LT(SYMB,KC_GRV),KC_QUOT,      LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
-                                              ALT_T(KC_APP),  KC_LGUI,
-                                                              KC_HOME,
-                                               KC_SPC,KC_BSPC,KC_END,
+                                              ALT_T(KC_APP),  KC_HOME,
+                                                              KC_END,
+                                               KC_SPC,KC_BSPC,LGUI_T(KC_MHEN),
         // right hand
              KC_RGHT,     KC_6,   KC_7,  KC_8,   KC_9,   KC_0,             KC_BSLS,
              TG(SYMB),    KC_F,   KC_G,  KC_C,   KC_R,   KC_L,             KC_SLSH,
                           KC_D,   KC_H,  KC_T,   KC_N,   KC_S,          GUI_T(KC_MINS),
-             MEH_T(KC_MHEN),KC_B,   KC_M,  KC_W,KC_V, CTL_T(KC_Z),   KC_RSFT,
-                                  KC_DOWN, KC_UP,KC_LBRC,KC_RBRC,          KC_EQL,
-             KC_LALT,        CTL_T(KC_ESC),
-             KC_PGUP,
-             KC_PGDN,KC_TAB, KC_ENT
+             KC_RBRC,     KC_B,   KC_M,  KC_W,KC_V, CTL_T(KC_Z),   KC_RSFT,
+                                  KC_LEFT, KC_DOWN,KC_UP,KC_RGHT,          KC_EQL,
+             KC_PGUP,        CTL_T(KC_ESC),
+             KC_PGDN,
+             RGUI_T(KC_HENK),KC_TAB, KC_ENT
     ),
 /* Keymap 1: Symbol Layer
  *
@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,KC_EXLM,KC_AT,  KC_LCBR,KC_RCBR,KC_PIPE,KC_TRNS,
        KC_TRNS,KC_HASH,KC_DLR, KC_LPRN,KC_RPRN,KC_GRV,
        KC_TRNS,KC_PERC,KC_CIRC,KC_LBRC,KC_RBRC,KC_TILD,KC_TRNS,
-          EPRM,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+         RESET,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
                                        RGB_MOD,KC_TRNS,
                                                KC_TRNS,
                                RGB_VAD,RGB_VAI,KC_TRNS,
