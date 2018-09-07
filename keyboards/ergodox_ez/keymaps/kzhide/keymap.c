@@ -51,9 +51,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // right hand
              KC_RGHT,     KC_6,   KC_7,  KC_8,   KC_9,   KC_0,             KC_BSLS,
              TG(SYMB),    KC_F,   KC_G,  KC_C,   KC_R,   KC_L,             KC_SLSH,
-                          KC_D,   KC_H,  KC_T,   KC_N,   KC_S,          GUI_T(KC_MINS),
+                          KC_D,   KC_H,  KC_T,   KC_N,   KC_S,          KC_MINS,
              KC_RBRC,     KC_B,   KC_M,  KC_W,KC_V, CTL_T(KC_Z),   KC_RSFT,
-                                  KC_LEFT, KC_DOWN,KC_UP,KC_RGHT,          KC_EQL,
+                                  KC_LEFT, KC_DOWN,KC_UP,KC_RGHT,          LT(MDIA, KC_EQL),
              KC_PGUP,        CTL_T(KC_ESC),
              KC_PGDN,
              RGUI_T(KC_HENK),KC_TAB, KC_ENT
@@ -123,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 // MEDIA AND MOUSE
 [MDIA] = LAYOUT_ergodox(
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_F1, KC_F1, KC_F3, KC_F4, KC_F5, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
@@ -132,9 +132,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     KC_TRNS,
                                   KC_TRNS, KC_TRNS, KC_TRNS,
     // right hand
-       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MPLY,
+       KC_TRNS,  KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11,
+       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_UP, KC_TRNS, KC_F12,
+                 KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_MPLY,
        KC_TRNS,  KC_TRNS, KC_TRNS, KC_MPRV, KC_MNXT, KC_TRNS, KC_TRNS,
                           KC_VOLU, KC_VOLD, KC_MUTE, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS,
