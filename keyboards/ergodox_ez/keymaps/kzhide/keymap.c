@@ -15,16 +15,16 @@ enum custom_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/* Keymap 0: Basic layer
+/* Keymap 0: Basic layer (Dvorak)
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   =    |   1  |   2  |   3  |   4  |   5  | LEFT |           | RIGHT|   6  |   7  |   8  |   9  |   0  |   -    |
+ * |   =    |   1  |   2  |   3  |   4  |   5  | LEFT |           | RIGHT|   6  |   7  |   8  |   9  |   0  |   \    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | Del    |   Q  |   W  |   E  |   R  |   T  |  L1  |           |  L1  |   Y  |   U  |   I  |   O  |   P  |   \    |
+ * | Bksp   |   '  |   ,  |   .  |   P  |   Y  |  L1  |           |  L1  |   F  |   G  |   C  |   R  |   L  |   /    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | BkSp   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |; / L2|' / Cmd |
+ * | LCtrl  |   A  |   O  |   E  |   U  |   I  |------|           |------|   D  |   H  |   T  |   N  |   S  |   -    |
  * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
- * | LShift |Z/Ctrl|   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |//Ctrl| RShift |
+ * | LShift |   ;  |   Q  |   J  |   K  |   X  |      |           |      |   B  |   M  |   W  |   V  |   Z  | RShift |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |Grv/L1|  '"  |AltShf| Left | Right|                                       |  Up  | Down |   [  |   ]  | ~L1  |
  *   `----------------------------------'                                       `----------------------------------'
@@ -44,16 +44,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_BSPC,        KC_QUOT,      KC_COMM,   KC_DOT,   KC_P,   KC_Y,   TG(SYMB),
         KC_LCTL,        KC_A,         KC_O,   KC_E,   KC_U,   KC_I,
         KC_LSFT,        CTL_T(KC_SCLN),  KC_Q,   KC_J,   KC_K,   KC_X,   KC_LBRC,
-        LT(SYMB,KC_GRV),KC_QUOT,      LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
+        LT(SYMB,KC_GRV),KC_LALT,      LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
                                               ALT_T(KC_APP),  KC_HOME,
                                                               KC_END,
                                                KC_SPC,KC_BSPC,LGUI_T(KC_MHEN),
         // right hand
-             KC_RGHT,     KC_6,   KC_7,  KC_8,   KC_9,   KC_0,             KC_BSLS,
+             KC_RGHT,     KC_6,   KC_7,  KC_8,   KC_9,   KC_0,             KC_EQL,
              TG(SYMB),    KC_F,   KC_G,  KC_C,   KC_R,   KC_L,             KC_SLSH,
                           KC_D,   KC_H,  KC_T,   KC_N,   KC_S,          KC_MINS,
              KC_RBRC,     KC_B,   KC_M,  KC_W,KC_V, CTL_T(KC_Z),   KC_RSFT,
-                                  KC_LEFT, KC_DOWN,KC_UP,KC_RGHT,          LT(MDIA, KC_EQL),
+                                  KC_LEFT, KC_DOWN,KC_UP,KC_RGHT,          LT(MDIA, KC_BSLS),
              KC_PGUP,        CTL_T(KC_ESC),
              KC_PGDN,
              RGUI_T(KC_HENK),KC_TAB, KC_ENT
