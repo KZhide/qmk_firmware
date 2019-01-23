@@ -10,6 +10,8 @@
 #define SYMBQ 4 // symbols
 #define MDIAQ 5 // media keys
 
+rgb_config_t rgb_matrix_config;
+
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
   EPRM,
@@ -29,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
  * | LShift |   ;  |   Q  |   J  |   K  |   X  |      |           |      |   B  |   M  |   W  |   V  |   Z  | RShift |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |Grv/L1|  '"  |AltShf| Left | Right|                                       | Left | Down |  Up  | Rght |   \  |
+ *   |Grv/L1| LAlt |   /  |   [  |   ]  |                                       | Left | Down |  Up  | Rght |   \  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | App  | LGui |       | Alt  |Ctrl/Esc|
@@ -48,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRV,        KC_QUOT,      KC_COMM,   KC_DOT,   KC_P,   KC_Y,   TG(BASEQ),
         KC_LCTL,        KC_A,         KC_O,   KC_E,   KC_U,   KC_I,
         KC_LSFT,        CTL_T(KC_SCLN),  KC_Q,   KC_J,   KC_K,   KC_X,   KC_LBRC,
-        LT(SYMB,KC_GRV),KC_LALT,      LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
+        LT(SYMB,KC_GRV),KC_LALT,      KC_SLSH,  KC_LBRC,KC_RBRC,
                                               ALT_T(KC_APP),  KC_HOME,
                                                               KC_END,
                                                KC_SPC,KC_BSPC,LGUI_T(KC_LANG2),
@@ -175,7 +177,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRV,        KC_Q,      KC_W,   KC_E,   KC_R,   KC_T,   KC_TRNS,
         KC_LCTL,        KC_A,         KC_S,   KC_D,   KC_F,   KC_G,
         KC_LSFT,        KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,   KC_LBRC,
-        LT(SYMBQ,KC_GRV),KC_LALT,      LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
+        LT(SYMBQ,KC_GRV),KC_LALT,      KC_SLSH,  KC_LBRC,KC_RBRC,
                                               ALT_T(KC_APP),  KC_HOME,
                                                               KC_END,
                                                KC_SPC,KC_BSPC,LGUI_T(KC_LANG2),
@@ -274,6 +276,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 };
 
+const uint16_t PROGMEM layercolors[][2] = {
+  [BASE] = {0, 155},
+  [SYMB] = {30, 155},
+  [MDIA] = {60, 155},
+  [BASEQ] = {90, 155},
+  [SYMBQ] = {120, 155},
+  [MDIAQ] = {150, 155},
+};
+
 const uint16_t PROGMEM fn_actions[] = {
     [1] = ACTION_LAYER_TAP_TOGGLE(SYMB)                // FN1 - Momentary Layer 1 (Symbols)
 };
@@ -328,12 +339,32 @@ void matrix_init_user(void) {
 #ifdef RGBLIGHT_COLOR_LAYER_0
   rgblight_setrgb(RGBLIGHT_COLOR_LAYER_0);
 #endif
+#ifdef RGBMATRIX_ENABLE
+  rgb_matrix_config.raw = eeprom_read_dword(EECONFIG_RGB_MATRIX);
+#endif
 };
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
 
 };
+
+void set_layer_color(uint8_t layer) {
+  HSV hsv = { .h = pgm_read_byte(&layercolors[layer][0]), .s = pgm_read_byte(&layercolors[layer][1]), .v = rgb_matrix_config.val };
+  RGB rgb = hsv_to_rgb( hsv );
+
+  for (int i = 0; i < DRIVER_LED_TOTAL; ++i) {
+    rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+  }
+}
+
+void rgb_matrix_indicators_user(void) {
+  //uint32_t mode = rgblight_get_mode();
+  if(rgb_matrix_config.enable == 1) {
+    uint8_t layer = biton32(layer_state);
+    set_layer_color(layer);
+  }
+}
 
 // Runs whenever there is a layer state change.
 uint32_t layer_state_set_user(uint32_t state) {
