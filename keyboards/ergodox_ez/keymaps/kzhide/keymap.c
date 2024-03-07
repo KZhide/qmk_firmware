@@ -9,6 +9,7 @@
 #define BASEQ 3 // qwerty keys
 #define SYMBQ 4 // symbols
 #define MDIAQ 5 // media keys
+#define BASE_ONISHI 6 // onishi keys
 
 #ifdef RGBMATRIX_ENABLE
 rgb_config_t rgb_matrix_config;
@@ -51,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_LEFT,
         KC_GRV,        KC_QUOT,      KC_COMM,   KC_DOT,   KC_P,   KC_Y,   TG(BASEQ),
         KC_LCTL,        KC_A,         KC_O,   KC_E,   KC_U,   KC_I,
-        KC_LSFT,        CTL_T(KC_SCLN),  KC_Q,   KC_J,   KC_K,   KC_X,   KC_LBRC,
+        KC_LSFT,        CTL_T(KC_SCLN),  KC_Q,   KC_J,   KC_K,   KC_X,   TG(BASE_ONISHI),
         LT(SYMB,KC_GRV),KC_LALT,      KC_SLSH,  KC_LBRC,KC_RBRC,
                                                    KC_PSCR,  KC_HOME,
                                                               KC_END,
@@ -178,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_LEFT,
         KC_GRV,        KC_Q,      KC_W,   KC_E,   KC_R,   KC_T,   KC_TRNS,
         KC_LCTL,        KC_A,         KC_S,   KC_D,   KC_F,   KC_G,
-        KC_LSFT,        KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,   KC_LBRC,
+        KC_LSFT,        KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,   TG(BASE_ONISHI),
         LT(SYMBQ,KC_GRV),KC_LALT,      KC_SLSH,  KC_LBRC,KC_RBRC,
                                               KC_PSCR,  KC_HOME,
                                                               KC_END,
@@ -276,6 +277,50 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_WBAK
 ),
+/* Keymap 6: Basic layer (Onishi)
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * | Esc    |   1  |   2  |   3  |   4  |   5  | LEFT |           | RIGHT|   6  |   7  |   8  |   9  |   0  |   =    |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * | Grv    |   Q  |   L  |   U  |   ,  |   .  |  L3  |           |  L1  |   F  |   W  |   R  |   Y  |   P  |   /    |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * | LCtrl  |   E  |   I  |   A  |   O  |   -  |------|           |------|   K  |   T  |   N  |   S  |   H  |   -    |
+ * |--------+------+------+------+------+------| TRNS |           |  xx  |------+------+------+------+------+--------|
+ * | LShift |   Z  |   X  |   C  |   V  |   ;  |      |           |      |   G  |   D  |   M  |   J  |   B  | RShift |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |Grv/L1| Alt  |   /  |  { [ | ] }  |                                       | Left | Down |  Up  | Rght | \L2  |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        | PScr | Home |       | PgUp |Ctrl/Esc|
+ *                                 ,------|------|------|       |------+--------+------.
+ *                                 |      |      | End  |       | PgDn |        |      |
+ *                                 | Space|Backsp|------|       |------|  Tab   |Enter |
+ *                                 |      |ace   | Eisu |       | Kana |        |      |
+ *                                 |      |      | Gui  |       | Gui  |        |      |
+ *                                 `--------------------'       `----------------------'
+ */
+// If it accepts an argument (i.e, is a function), it doesn't need KC_.
+// Otherwise, it needs KC_*
+[BASE_ONISHI] = LAYOUT_ergodox(  // layer 0 : default
+        // left hand
+        KC_ESC,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_LEFT,
+        KC_GRV,        KC_Q,      KC_L,   KC_U,   KC_COMM,   KC_DOT,   TG(BASEQ),
+        KC_LCTL,        KC_E,         KC_I,   KC_A,   KC_O,   KC_MINS,
+        KC_LSFT,        KC_Z,  KC_X,   KC_C,   KC_V,   KC_SCLN,   KC_TRNS,
+        LT(SYMBQ,KC_GRV),KC_LALT,      KC_SLSH,  KC_LBRC,KC_RBRC,
+                                              KC_PSCR,  KC_HOME,
+                                                              KC_END,
+                                               KC_SPC,KC_BSPC,LGUI_T(KC_LANG2),
+        // right hand
+             KC_RGHT,     KC_6,   KC_7,  KC_8,  KC_9,   KC_0,             KC_EQL,
+             TG(SYMB),    KC_F,   KC_W,  KC_R,   KC_Y,   KC_P,             KC_SLSH,
+                          KC_K,   KC_T,  KC_N,  KC_S,   KC_H,          KC_MINS,
+             KC_RBRC,     KC_G,   KC_D,  KC_M,  KC_J,   KC_B,   KC_RSFT,
+                                  KC_LEFT, KC_DOWN,KC_UP,KC_RGHT,          LT(MDIA, KC_BSLS),
+             KC_PGUP,        CTL_T(KC_ESC),
+             KC_PGDN,
+             RGUI_T(KC_LANG1),KC_TAB, KC_ENT
+    ),
 };
 
 const uint16_t PROGMEM layercolors[][2] = {
@@ -285,6 +330,7 @@ const uint16_t PROGMEM layercolors[][2] = {
   [BASEQ] = {90, 155},
   [SYMBQ] = {120, 155},
   [MDIAQ] = {150, 155},
+  [BASE_ONISHI] = {180, 155},
 };
 
 const uint16_t PROGMEM fn_actions[] = {
