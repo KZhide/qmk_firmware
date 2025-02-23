@@ -411,6 +411,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case LT(MDIA, KC_BSLS):
+      if (record->event.pressed && record->tap.count) {
+          twpair_on_jis(KC_BSLS, record);
+          return true;
+      }
+      break;
   }
 
   if (user_config.jis) {
