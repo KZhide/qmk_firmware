@@ -103,8 +103,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* #define RGBLIGHT_COLOR_LAYER_6 0xFF, 0x00, 0xFF */
 /* #define RGBLIGHT_COLOR_LAYER_7 0xFF, 0xFF, 0xFF */
 
-#define EECONFIG_RGB_MATRIX (uint32_t *)16
-
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.
